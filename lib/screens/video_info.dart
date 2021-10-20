@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:training/screens/home_screen.dart';
 import 'package:training/ui/colors.dart' as color;
 
 class VideoInfoScreen extends StatefulWidget {
@@ -46,10 +48,15 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                 children: [
                   Row(
                     children: [
-                      Icon(
-                        Icons.arrow_back_ios,
-                        size: 20,
-                        color: color.AppColor.secondPageIconColor,
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const HomeScreen());
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 20,
+                          color: color.AppColor.secondPageIconColor,
+                        ),
                       ),
                       Expanded(child: Container()),
                       Icon(
@@ -78,7 +85,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                         color: color.AppColor.secondPageTitleColor),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 60,
                   ),
                   Row(
                     children: [

@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:training/screens/video_info.dart';
 import 'package:training/ui/colors.dart' as color;
 
 class HomeScreen extends StatefulWidget {
@@ -88,10 +90,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   width: 5,
                 ),
-                Icon(
-                  Icons.arrow_forward,
-                  size: 20,
-                  color: color.AppColor.homePageIcons,
+                InkWell(
+                  onTap: () {
+                    Get.to(() => const VideoInfoScreen());
+                  },
+                  child: Icon(
+                    Icons.arrow_forward,
+                    size: 20,
+                    color: color.AppColor.homePageIcons,
+                  ),
                 )
               ],
             ),
