@@ -280,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 context: context,
                 removeTop: true,
                 child: ListView.builder(
-                    itemCount: (info.length.toDouble() / 2).toInt(),
+                    itemCount: info.length.toDouble() ~/ 2,
                     itemBuilder: (_, i) {
                       int a = 2 * i;
                       int b = 2 * i + 1;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training/screens/home_screen.dart';
+import 'package:training/screens/video_info.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const VideoInfoScreen(),
     );
   }
 }
