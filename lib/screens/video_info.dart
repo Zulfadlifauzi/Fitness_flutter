@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:training/ui/colors.dart' as color;
 
@@ -9,6 +11,21 @@ class VideoInfoScreen extends StatefulWidget {
 }
 
 class _VideoInfoScreenState extends State<VideoInfoScreen> {
+  List info = [];
+  _initData() {
+    DefaultAssetBundle.of(context)
+        .loadString('json/videoinfo.json')
+        .then((value) {
+      info = json.decode(value);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
