@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, avoid_single_cascade_in_expression_statements
+// ignore_for_file: unnecessary_null_comparison, avoid_single_cascade_in_expression_statements, prefer_is_empty
 
 import 'dart:convert';
 
@@ -18,7 +18,10 @@ class VideoInfoScreen extends StatefulWidget {
 class _VideoInfoScreenState extends State<VideoInfoScreen> {
   List videoInfo = [];
   bool _playArea = false;
-  late VideoPlayerController _controller;
+  bool _isPlaying = false;
+  bool _disposed = false;
+  int _isPlayingIndex = -1;
+  VideoPlayerController? _controller;
   _initData() async {
     await DefaultAssetBundle.of(context)
         .loadString('json/videoinfo.json')
@@ -33,6 +36,15 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
   void initState() {
     super.initState();
     _initData();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    _controller?.pause();
+    _controller?.dispose();
+    _controller = null;
+    super.dispose();
   }
 
   @override
@@ -208,6 +220,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                           ),
                         ),
                         _playView(context),
+                        _controlView(context),
                       ],
                     ),
                   ),
@@ -269,30 +282,138 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
     );
   }
 
+  Widget _controlView(BuildContext context) {
+    return Container(
+      height: 120,
+      width: MediaQuery.of(context).size.width,
+      color: color.AppColor.gradientSecond,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FlatButton(
+              onPressed: () async {
+                final index = _isPlayingIndex - 1;
+                if (index >= 0 && videoInfo.length >= 0) {
+                  _initializeVideo(index);
+                } else {
+                  Get.snackbar('Video', 'No more video to play');
+                }
+              },
+              child: const Icon(
+                Icons.fast_rewind,
+                size: 36,
+                color: Colors.white,
+              )),
+          FlatButton(
+              onPressed: () async {
+                if (_isPlaying) {
+                  setState(() {
+                    _isPlaying = false;
+                  });
+                  _controller?.pause();
+                } else {
+                  setState(() {
+                    _isPlaying = true;
+                  });
+                  _controller?.play();
+                }
+              },
+              child: Icon(
+                _isPlaying ? Icons.pause : Icons.play_arrow,
+                size: 36,
+                color: Colors.white,
+              )),
+          FlatButton(
+              onPressed: () async {
+                final index = _isPlayingIndex + 1;
+                if (index <= videoInfo.length - 1) {
+                  _initializeVideo(index);
+                } else {
+                  Get.snackbar('Video', 'No more video in the list',
+                      snackPosition: SnackPosition.BOTTOM,
+                      icon:
+                          const Icon(Icons.face, size: 30, color: Colors.white),
+                      backgroundColor: color.AppColor.gradientSecond,
+                      colorText: Colors.white);
+                }
+              },
+              child: const Icon(
+                Icons.fast_forward,
+                size: 36,
+                color: Colors.white,
+              )),
+        ],
+      ),
+    );
+  }
+
   Widget _playView(BuildContext context) {
     final controller = _controller;
     if (controller != null && controller.value.isInitialized) {
-      return Container(
-        height: 300,
-        width: 300,
+      return AspectRatio(
+        aspectRatio: 16 / 9,
         child: VideoPlayer(controller),
       );
     } else {
-      return Text('Being initialized please wait');
+      return const AspectRatio(
+          aspectRatio: 16 / 9,
+          child: Center(
+              child: Text(
+            'Preparing...',
+            style: TextStyle(fontSize: 20, color: Colors.white60),
+          )));
     }
   }
 
-  _onTapVideo(int index) {
+  var _onUpdateControllerTime = 0;
+  void _onControllerUpdate() async {
+    if (_disposed) {
+      return;
+    }
+
+    final now = DateTime.now().millisecondsSinceEpoch;
+    if (_onUpdateControllerTime > now) {
+      return;
+    }
+    _onUpdateControllerTime = now + 500;
+
+    final controller = _controller;
+    if (controller == null) {
+      debugPrint('controller is null');
+      return;
+    }
+    if (!controller.value.isInitialized) {
+      debugPrint('Controller can not be initialized');
+      return;
+    }
+    final playing = controller.value.isPlaying;
+    _isPlaying = playing;
+  }
+
+  _initializeVideo(int index) {
+    final old = _controller;
     final controller =
         VideoPlayerController.network(videoInfo[index]['videoUrl']);
     _controller = controller;
 
+    if (old != null) {
+      old.removeListener(_onControllerUpdate);
+      old.pause();
+    }
+
     setState(() {});
     controller
       ..initialize().then((_) {
+        old?.dispose();
+        _isPlayingIndex = index;
+        controller.addListener(_onControllerUpdate);
         controller.play();
         setState(() {});
       });
+  }
+
+  _onTapVideo(int index) {
+    _initializeVideo(index);
   }
 
   _listView() {
