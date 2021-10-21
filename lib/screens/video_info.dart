@@ -13,12 +13,12 @@ class VideoInfoScreen extends StatefulWidget {
 }
 
 class _VideoInfoScreenState extends State<VideoInfoScreen> {
-  List info = [];
+  List videoInfo = [];
   _initData() {
     DefaultAssetBundle.of(context)
         .loadString('json/videoinfo.json')
         .then((value) {
-      info = json.decode(value);
+      videoInfo = json.decode(value);
     });
   }
 
@@ -205,7 +205,26 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                                 fontSize: 15, color: color.AppColor.setsColor),
                           )
                         ],
-                      )
+                      ),
+                      // Expanded(
+                      //   child: new ListView.builder(
+                      //     itemCount: videoInfo.length,
+                      //     itemBuilder: (_, int index) {
+                      //       return GestureDetector(
+                      //         onTap: () {
+                      //           debugPrint(index.toString());
+                      //         },
+                      //         child: Container(
+                      //           color: Colors.redAccent,
+                      //           height: 135,
+                      //           child: Row(
+                      //             children: const [],
+                      //           ),
+                      //         ),
+                      //       );
+                      //     },
+                      //   ),
+                      // )
                     ],
                   )
                 ],
