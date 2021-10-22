@@ -172,7 +172,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
                                   Icon(
-                                    Icons.handyman_outlined,
+                                    Icons.person_outline,
                                     size: 20,
                                     color: Colors.black,
                                   ),
@@ -180,7 +180,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                                     width: 5,
                                   ),
                                   Text(
-                                    'Resistent band, kettlebell',
+                                    'Hafizah',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.black),
                                   )
@@ -344,7 +344,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
         Container(
           height: 40,
           width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.only(bottom: 5),
+          margin: EdgeInsets.only(bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -384,6 +384,8 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                       _initializeVideo(index);
                     } else {
                       Get.snackbar('Video List', '',
+                          margin:
+                              EdgeInsets.only(bottom: 10, left: 5, right: 5),
                           snackPosition: SnackPosition.BOTTOM,
                           icon: const Icon(Icons.face,
                               size: 30, color: Colors.white),
@@ -425,7 +427,9 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                     if (index <= videoInfo.length - 1) {
                       _initializeVideo(index);
                     } else {
-                      Get.snackbar('Video', '',
+                      Get.snackbar('Video List', '',
+                          margin:
+                              EdgeInsets.only(bottom: 10, left: 5, right: 5),
                           snackPosition: SnackPosition.BOTTOM,
                           icon: const Icon(Icons.face,
                               size: 30, color: Colors.white),
@@ -620,7 +624,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: const Center(
                   child: Text(
-                    '15s rest',
+                    '1m rest',
                     style: TextStyle(color: Color(0xFF839fed)),
                   ),
                 ),

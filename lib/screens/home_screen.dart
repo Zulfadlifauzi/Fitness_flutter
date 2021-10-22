@@ -13,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  DateTime _selectedDate = DateTime.now();
+
   List info = [];
   _initData() {
     DefaultAssetBundle.of(context).loadString('json/info.json').then((value) {
@@ -54,11 +56,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   width: 10,
                 ),
-                Icon(
-                  Icons.calendar_today_outlined,
-                  size: 20,
-                  color: color.AppColor.homePageIcons,
-                ),
+                IconButton(
+                    onPressed: () {
+                      _getDateFromuser();
+                    },
+                    icon: const Icon(
+                      Icons.calendar_today_outlined,
+                    )),
                 const SizedBox(
                   width: 15,
                 ),
@@ -374,5 +378,53 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  // _addDateBar() {
+  //   return Container(
+  //     margin: const EdgeInsets.only(top: 20, left: 20),
+  //     child: DatePicker(
+  //       DateTime.now(),
+  //       height: 100,
+  //       width: 80,
+  //       initialSelectedDate: DateTime.now(),
+  //       selectionColor: color.AppColor.bluishClr,
+  //       selectedTextColor: Colors.white,
+  //       dateTextStyle: const TextStyle(
+  //         fontSize: 20,
+  //         fontWeight: FontWeight.w600,
+  //         color: Colors.grey,
+  //       ),
+  //       dayTextStyle: const TextStyle(
+  //         fontSize: 16,
+  //         fontWeight: FontWeight.w600,
+  //         color: Colors.grey,
+  //       ),
+  //       monthTextStyle: const TextStyle(
+  //         fontSize: 14,
+  //         fontWeight: FontWeight.w600,
+  //         color: Colors.grey,
+  //       ),
+  //       onDateChange: (date) {
+  //         _selectedDate = date;
+  //       },
+  //     ),
+  //   );
+  // }
+  _getDateFromuser() async {
+    DateTime? _pickerDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2022));
+
+    if (_pickerDate != null) {
+      setState(() {
+        _selectedDate = _pickerDate;
+        print(_selectedDate);
+      });
+    } else {
+      print('Its null bois');
+    }
   }
 }
