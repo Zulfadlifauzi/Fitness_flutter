@@ -280,10 +280,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Area of focus',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: color.AppColor.homePageTitle),
+                ),
+                Expanded(child: Container()),
+                  Text(
+                  'See all',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: color.AppColor.homePageDetail),
+                ),
+                const SizedBox(width: 5,),
+                InkWell(
+                  onTap: () {
+                  },
+                  child: Icon(
+                    Icons.arrow_forward,
+                    size: 20,
+                    color: color.AppColor.homePageIcons,
+                  ),
                 )
+                
+
               ],
             ),
             Expanded(
