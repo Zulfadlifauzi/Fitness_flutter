@@ -40,6 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Row(
               children: [
+                InkWell(
+                  onTap: () {
+                  },
+                  child: Icon(
+                    Icons.menu,
+                    size: 20,
+                    color: color.AppColor.homePageIcons,
+                  ),
+                ),
+                SizedBox(width: 15,),
                 Text(
                   'Training',
                   style: TextStyle(
@@ -53,18 +63,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   size: 20,
                   color: color.AppColor.homePageIcons,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
                 IconButton(
                     onPressed: () {
                       _getDateFromuser();
                     },
                     icon: const Icon(
                       Icons.calendar_today_outlined,
+                      size: 20,
                     )),
                 const SizedBox(
-                  width: 15,
+                  width: 5,
                 ),
                 Icon(
                   Icons.arrow_forward_ios,
@@ -302,10 +310,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: color.AppColor.homePageIcons,
                   ),
                 )
-                
-
               ],
             ),
+            SizedBox(height: 10,),
             Expanded(
                 child: OverflowBox(
               maxWidth: MediaQuery.of(context).size.width,
