@@ -40,6 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Row(
               children: [
+                InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.menu,
+                    size: 20,
+                    color: color.AppColor.homePageIcons,
+                  ),
+                ),
+                const SizedBox(width: 20),
                 Text(
                   'Training',
                   style: TextStyle(
@@ -234,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(right: 190),
+                    margin: const EdgeInsets.only(right: 300),
                     height: 120,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -280,9 +289,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Area of focus',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: color.AppColor.homePageTitle),
+                ),
+                Expanded(child: Container()),
+                Text(
+                  'See all',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: color.AppColor.homePageDetail,
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.arrow_forward,
+                    size: 20,
+                    color: color.AppColor.homePageIcons,
+                  ),
                 )
               ],
             ),

@@ -301,18 +301,18 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: Colors.red[700],
             inactiveTrackColor: Colors.red[100],
-            trackShape: RoundedRectSliderTrackShape(),
+            trackShape: const RoundedRectSliderTrackShape(),
             trackHeight: 2.0,
-            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
             thumbColor: Colors.redAccent,
             overlayColor: Colors.red.withAlpha(32),
-            overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-            tickMarkShape: RoundSliderTickMarkShape(),
+            overlayShape: const RoundSliderOverlayShape(overlayRadius: 28.0),
+            tickMarkShape: const RoundSliderTickMarkShape(),
             activeTickMarkColor: Colors.red[700],
             inactiveTickMarkColor: Colors.red[100],
-            valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+            valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
             valueIndicatorColor: Colors.redAccent,
-            valueIndicatorTextStyle: TextStyle(
+            valueIndicatorTextStyle: const TextStyle(
               color: Colors.white,
             ),
           ),
@@ -344,7 +344,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
         Container(
           height: 40,
           width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -384,8 +384,8 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                       _initializeVideo(index);
                     } else {
                       Get.snackbar('Video List', '',
-                          margin:
-                              EdgeInsets.only(bottom: 10, left: 5, right: 5),
+                          margin: const EdgeInsets.only(
+                              bottom: 10, left: 5, right: 5),
                           snackPosition: SnackPosition.BOTTOM,
                           icon: const Icon(Icons.face,
                               size: 30, color: Colors.white),
@@ -428,8 +428,8 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                       _initializeVideo(index);
                     } else {
                       Get.snackbar('Video List', '',
-                          margin:
-                              EdgeInsets.only(bottom: 10, left: 5, right: 5),
+                          margin: const EdgeInsets.only(
+                              bottom: 10, left: 5, right: 5),
                           snackPosition: SnackPosition.BOTTOM,
                           icon: const Icon(Icons.face,
                               size: 30, color: Colors.white),
@@ -447,7 +447,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                     color: Colors.white,
                   )),
               Text('$mins:$secs',
-                  style: TextStyle(color: Colors.white, shadows: <Shadow>[
+                  style: const TextStyle(color: Colors.white, shadows: <Shadow>[
                     Shadow(
                         offset: Offset(0.0, 1.0),
                         blurRadius: 4.0,
