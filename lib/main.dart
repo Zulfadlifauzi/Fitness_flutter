@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:training/screens/get_data.dart';
 import 'package:training/screens/home_screen.dart';
 
 import 'auth/login.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home: const GetDataScreen(),
     );
   }
 }

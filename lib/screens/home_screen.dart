@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:training/auth/login.dart';
 import 'package:training/screens/video_info.dart';
 import 'package:training/ui/colors.dart' as color;
 
@@ -43,7 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(const LoginScreen());
+                      },
                       child: Icon(
                         Icons.menu,
                         size: 20,
