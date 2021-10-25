@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training/screens/home_screen.dart';
-import 'package:training/screens/login.dart';
+
+import 'auth/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,5 +22,17 @@ class MyApp extends StatelessWidget {
       ),
       home: const LoginScreen(),
     );
+  }
+}
+
+class HexColor extends Color {
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF' + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
   }
 }
