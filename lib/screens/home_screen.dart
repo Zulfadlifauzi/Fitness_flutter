@@ -6,6 +6,8 @@ import 'package:training/auth/login.dart';
 import 'package:training/screens/video_info.dart';
 import 'package:training/ui/colors.dart' as color;
 
+import 'get_data.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -304,7 +306,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Expanded(child: Container()),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(const GetDataScreen());
+                      },
                       child: Row(
                         children: [
                           Text(

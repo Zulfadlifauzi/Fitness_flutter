@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:training/ui/colors.dart' as color;
 
 class GetDataScreen extends StatefulWidget {
   const GetDataScreen({Key? key}) : super(key: key);
@@ -41,7 +42,11 @@ class _GetDataScreenState extends State<GetDataScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Get Data'),
+          backgroundColor: color.AppColor.yellowClr,
+          title: const Text(
+            'MODULE',
+            style: TextStyle(letterSpacing: 5),
+          ),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -52,25 +57,25 @@ class _GetDataScreenState extends State<GetDataScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.only(top: 20, left: 30, right: 30),
+                  margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: Row(
-                    children: [
-                      const Text(
-                        'Hello everyone',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Expanded(child: Container()),
-                      const Text('search'),
-                      const SizedBox(
+                    children: const [
+                      // const Text(
+                      //   'Module',
+                      //   style: TextStyle(
+                      //       color: Colors.black,
+                      //       fontSize: 20,
+                      //       fontWeight: FontWeight.bold),
+                      // ),
+                      // Expanded(child: Container()),
+                      SizedBox(
                         width: 10,
                       ),
-                      const Icon(
+                      Icon(
                         Icons.search_outlined,
                         size: 20,
-                      )
+                      ),
+                      Text('search'),
                     ],
                   ),
                 ),
@@ -79,37 +84,46 @@ class _GetDataScreenState extends State<GetDataScreen> {
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        // color: Colors.red,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: 10, left: 20),
-                                  child: Image.network(
-                                      listResponse![index]['avatar']),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(left: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(listResponse![index]['email']),
-                                      Text(listResponse![index]['first_name']),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(listResponse![index]['last_name'])
-                                    ],
+                      return InkWell(
+                        onTap: () {
+                          print(listResponse![index]);
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          // color: Colors.red,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 10, left: 20),
+                                    child: Image.network(
+                                        listResponse![index]['avatar']),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            listResponse![index]['first_name']),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(listResponse![index]['last_name']),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(listResponse![index]['email']),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
