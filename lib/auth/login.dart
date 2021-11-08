@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:training/auth/forgot_password.dart';
 import 'package:training/auth/signup.dart';
 import 'package:training/screens/home_screen.dart';
-import 'package:training/ui/colors.dart' as color;
+import 'package:training/styles/colors.dart' as color;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training/screens/home_screen.dart';
-import 'package:training/ui/colors.dart' as color;
+import 'package:training/styles/colors.dart' as color;
 import 'package:video_player/video_player.dart';
 
 class VideoInfoScreen extends StatefulWidget {
@@ -377,7 +377,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                   ),
                 ),
               ),
-              FlatButton(
+              ElevatedButton(
                   onPressed: () async {
                     final index = _isPlayingIndex - 1;
                     if (index >= 0 && videoInfo.length >= 0) {
@@ -402,7 +402,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                     size: 36,
                     color: Colors.white,
                   )),
-              FlatButton(
+              ElevatedButton(
                   onPressed: () async {
                     if (_isPlaying) {
                       setState(() {
@@ -421,7 +421,7 @@ class _VideoInfoScreenState extends State<VideoInfoScreen> {
                     size: 36,
                     color: Colors.white,
                   )),
-              FlatButton(
+              ElevatedButton(
                   onPressed: () async {
                     final index = _isPlayingIndex + 1;
                     if (index <= videoInfo.length - 1) {

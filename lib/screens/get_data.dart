@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:training/ui/colors.dart' as color;
+import 'package:training/styles/colors.dart' as color;
 
 class GetDataScreen extends StatefulWidget {
   const GetDataScreen({Key? key}) : super(key: key);

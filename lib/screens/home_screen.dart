@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training/auth/login.dart';
 import 'package:training/screens/video_info.dart';
-import 'package:training/ui/colors.dart' as color;
+import 'package:training/styles/colors.dart' as color;
+import 'package:training/widgets/drawer_tab.dart';
 
 import 'get_data.dart';
 
@@ -36,60 +37,101 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black),
+          elevation: 0,
+          backgroundColor: color.AppColor.homePageBackground,
+          title: Text(
+            'Training',
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
+                color: color.AppColor.homePageTitle),
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back_ios),
+              color: Colors.black,
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('This is a snackbar')));
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.calendar_today_outlined),
+              color: Colors.black,
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+                _getDateFromuser();
+              },
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            IconButton(
+              icon: const Icon(Icons.arrow_forward_ios),
+              color: Colors.black,
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('This is a snackbar')));
+              },
+            ),
+          ],
+        ),
+        drawer: const DrawerTab(),
         backgroundColor: color.AppColor.homePageBackground,
         body: SingleChildScrollView(
           child: Container(
               width: double.infinity,
               height: 1000,
-              padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
               child: Column(children: [
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.to(const LoginScreen());
-                      },
-                      child: Icon(
-                        Icons.menu,
-                        size: 20,
-                        color: color.AppColor.homePageIcons,
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    Text(
-                      'Training',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: color.AppColor.homePageTitle,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    Expanded(child: Container()),
-                    Icon(
-                      Icons.arrow_back_ios,
-                      size: 20,
-                      color: color.AppColor.homePageIcons,
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          _getDateFromuser();
-                        },
-                        icon: const Icon(
-                          Icons.calendar_today_outlined,
-                          size: 20,
-                        )),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 20,
-                      color: color.AppColor.homePageIcons,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
+                // Row(
+                //   children: [
+                //     InkWell(
+                //       onTap: () {
+                //         Get.to(const LoginScreen());
+                //       },
+                //       child: Icon(
+                //         Icons.menu,
+                //         size: 20,
+                //         color: color.AppColor.homePageIcons,
+                //       ),
+                //     ),
+                //     const SizedBox(width: 20),
+                //     Text(
+                //       'Training',
+                //       style: TextStyle(
+                //           fontSize: 30,
+                //           color: color.AppColor.homePageTitle,
+                //           fontWeight: FontWeight.w700),
+                //     ),
+                //     Expanded(child: Container()),
+                //     Icon(
+                //       Icons.arrow_back_ios,
+                //       size: 20,
+                //       color: color.AppColor.homePageIcons,
+                //     ),
+                //     IconButton(
+                //         onPressed: () {
+                //           _getDateFromuser();
+                //         },
+                //         icon: const Icon(
+                //           Icons.calendar_today_outlined,
+                //           size: 20,
+                //         )),
+                //     const SizedBox(
+                //       width: 5,
+                //     ),
+                //     Icon(
+                //       Icons.arrow_forward_ios,
+                //       size: 20,
+                //       color: color.AppColor.homePageIcons,
+                //     ),
+                //   ],
+                // ),
                 Row(
                   children: [
                     Text(
