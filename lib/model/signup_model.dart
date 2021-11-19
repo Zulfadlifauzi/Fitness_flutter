@@ -15,7 +15,7 @@ class SignupRequestModel {
   String? name;
   String? email;
   String? password;
-  int? phone;
+  String? phone;
 
   SignupRequestModel({this.email, this.name, this.password, this.phone});
 
