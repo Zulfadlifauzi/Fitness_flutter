@@ -12,6 +12,8 @@ class SignupScreen extends StatefulWidget {
 class _HomeScreenState extends State<SignupScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -81,7 +83,7 @@ class _HomeScreenState extends State<SignupScreen> {
                             height: 20,
                           ),
                           TextFormField(
-                            controller: passwordController,
+                            controller: phoneController,
                             decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Enter your phone number',

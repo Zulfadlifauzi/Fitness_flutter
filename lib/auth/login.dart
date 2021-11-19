@@ -3,6 +3,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:training/auth/forgot_password.dart';
 import 'package:training/auth/signup.dart';
+import 'package:training/model/login_model.dart';
 import 'package:training/screens/home_screen.dart';
 import 'package:training/styles/colors.dart' as color;
 
@@ -19,6 +20,22 @@ class _SignupScreenState extends State<LoginScreen> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<FormState>();
+
+  late LoginRequestModel requestModel;
+
+  @override
+  void initState() {
+    requestModel = LoginRequestModel();
+  }
+
+  bool validateAndSave() {
+    final form = formKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +85,8 @@ class _SignupScreenState extends State<LoginScreen> {
                   child: Lottie.asset('assets/lottie/learning.json'),
                 ),
                 TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    onSaved: (input) => requestModel.email = input,
                     controller: emailController,
                     decoration:
                         const InputDecoration(labelText: 'Enter your email'),
@@ -77,6 +96,8 @@ class _SignupScreenState extends State<LoginScreen> {
                     ])),
                 SizedBox(height: height * 0.05),
                 TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  onSaved: (input) => requestModel.password = input,
                   controller: passController,
                   decoration:
                       const InputDecoration(labelText: 'Enter your password'),
@@ -128,10 +149,18 @@ class _SignupScreenState extends State<LoginScreen> {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const HomeScreen()));
+                            if (validateAndSave() == false &&
+                                formKey.currentState!.validate() == false) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          'Please enter your information')));
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Successfully login')));
+                            }
+                            print(requestModel.toJson());
                           },
                           child: const Text(
                             'Sign In',
@@ -172,15 +201,4 @@ class _SignupScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-  bool validateAndSave() {
-    final form = formKey.currentState;
-    if (form!.validate()) {
-      form.save();
-      return true;
-    }
-    return false;
-  }
-
-//ignore: must_be_immutable
 }
