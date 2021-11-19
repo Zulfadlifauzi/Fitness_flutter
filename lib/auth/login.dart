@@ -59,22 +59,21 @@ class _SignupScreenState extends State<LoginScreen> {
               children: [
                 Center(
                   child: Column(
-                    children: const [
-                      Text(
-                        'Hello Again,',
-                        style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Welcome back!',
-                        style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
+                    children: [
+                      RichText(
+                        text: const TextSpan(
+                          text: 'Hello Again!\n',
+                          style: TextStyle(fontSize: 20, color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Welcome to '),
+                            TextSpan(
+                                text: 'Training',
+                                style: TextStyle(
+                                    color: Colors.blueAccent,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
