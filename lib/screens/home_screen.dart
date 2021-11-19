@@ -391,7 +391,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           return Row(
                             children: [
                               Container(
-                                  padding: const EdgeInsets.only(bottom: 10),
                                   width:
                                       (MediaQuery.of(context).size.width - 90) /
                                           2,
@@ -415,15 +414,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                             color: color.AppColor.gradientSecond
                                                 .withOpacity(0.1)),
                                       ]),
-                                  child: Center(
-                                    child: Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Text(
-                                        info[a]['title'],
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color:
-                                                color.AppColor.homePageDetail),
+                                  child: Container(
+                                    child: Center(
+                                      child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Text(
+                                          info[a]['title'],
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: color
+                                                  .AppColor.homePageDetail),
+                                        ),
                                       ),
                                     ),
                                   )),

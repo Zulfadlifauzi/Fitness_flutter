@@ -71,6 +71,12 @@ class _HomeScreenState extends State<SignupScreen> {
                               labelStyle: TextStyle(color: Colors.grey)),
                         ),
                         TextFormField(
+                          controller: passwordController,
+                          decoration: const InputDecoration(
+                              labelText: 'Enter your phone number',
+                              labelStyle: TextStyle(color: Colors.grey)),
+                        ),
+                        TextFormField(
                           obscureText: hidePassword,
                           controller: passwordController,
                           decoration: const InputDecoration(

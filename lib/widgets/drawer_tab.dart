@@ -19,7 +19,7 @@ class _DrawerTabState extends State<DrawerTab> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: color.AppColor.loopColor,
+        color: color.AppColor.homePageDetail,
         child: ListView(
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
@@ -29,7 +29,7 @@ class _DrawerTabState extends State<DrawerTab> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   buildMenuItem(
                     text: 'Profile',
@@ -42,14 +42,14 @@ class _DrawerTabState extends State<DrawerTab> {
                   buildMenuItem(
                       text: 'Notifications',
                       icon: Icons.notifications,
-                      onClicked: () => selectedItem(context, 2)),
+                      onClicked: () => selectedItem(context, 1)),
                   const SizedBox(
                     height: 16,
                   ),
                   buildMenuItem(
                       text: 'Sign out',
                       icon: Icons.logout_outlined,
-                      onClicked: () => selectedItem(context, 3))
+                      onClicked: () => selectedItem(context, 2))
                 ],
               ),
             )
