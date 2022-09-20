@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:training/screens/get_data.dart';
-import 'package:training/screens/home_screen.dart';
 
 import 'auth/login.dart';
 
