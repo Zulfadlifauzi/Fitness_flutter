@@ -25,6 +25,7 @@ class _SignupScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
+    super.initState();
     requestModel = LoginRequestModel();
   }
 
@@ -158,6 +159,10 @@ class _SignupScreenState extends State<LoginScreen> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content: Text('Successfully login')));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreen()));
                             }
                             print(requestModel.toJson());
                           },
